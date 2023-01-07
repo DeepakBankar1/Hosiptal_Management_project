@@ -61,7 +61,7 @@ function ViewBeds() {
           </thead>
           <tbody>
             {myData.map((post) => {
-              const { bed_id, category, charges, status } = post;
+              const {bed_id,category,charges,status} = post;
               return (
                 <tr>
                   <th width="12%">{bed_id}</th>

@@ -26,8 +26,22 @@ let DoctorRegister = () => {
       .then((data) => {
         setdept(data)});
   }, []);
+  const validateAddFolowUp = () => { var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var passwor=/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z]).{8,16}$/;
+
+  if(doctor_contact.match(phoneno)) {
+    return true;
+  }
+  if(password.match(passwor)) {
+    return true;
+  }
+  else {
+    alert("please valid values");
+    return false;
+  }}
   async function handleSubmit(event) {
     event.preventDefault();
+    if (validateAddFolowUp() === true) {
     try {
       await axios.post("http://localhost:8080/registerd", {
         user_email: user_email,
@@ -48,6 +62,7 @@ let DoctorRegister = () => {
     } catch (err) {
       alert("User Registation Failed");
     }
+  }
   }
 
   return (

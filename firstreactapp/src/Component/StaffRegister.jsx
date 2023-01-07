@@ -23,8 +23,22 @@ function StaffRegister() {
       .then((data) => {
         setdept(data)});
   }, []);
+
+  const validateAddFolowUp = () => { var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var passwor=/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z]).{8,16}$/;
+  if(staff_contact.match(phoneno)) {
+    return true;
+  }
+  if(password.match(passwor)) {
+    return true;
+  }
+  else {
+    alert("please Enter valid values");
+    return false;
+  }}
   async function handleSubmit(event) {
     event.preventDefault();
+    if (validateAddFolowUp() === true) {
     try {
       await axios.post("http://localhost:8080/registers", {
         staff_name: staff_name,
@@ -51,6 +65,7 @@ function StaffRegister() {
     } catch (err) {
       alert("User Registation Failed");
     }
+  }
   }
   return (
     <div className="staffreg">

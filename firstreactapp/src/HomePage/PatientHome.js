@@ -101,7 +101,7 @@ let logout=()=>{
                   <h5 className="card-title text-dark">Update Patient</h5>
                   <p className="card-text"></p>
                   <button
-                    onClick={() => navigate("#")}
+                    onClick={() => navigate("/Patientupdate")}
                     className="btn btn-warning"
                   >
                     Update

@@ -22,8 +22,35 @@ function Register() {
   const [patient_gender, setpatient_gender] = useState("");
   const [form_fill, setform_fill] = useState("");
 
+  
+
+
+  const validateAddFolowUp = () => { var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var phone=/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+  var passwor=/^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z]).{8,16}$/;
+
+
+  if(patient_contact1.match(phoneno)) {
+    return true;
+  }
+  if(patient_contact2.match(phone)){
+     return true;
+  }
+  if(password.match(passwor)){
+     return true;
+  }
+  else {
+    alert("please Enter  values");
+    return false;
+  }}
+
   async function handleSubmit(event) {
+
+   
+
     event.preventDefault();
+    if (validateAddFolowUp() === true) {
+
     try {
       await axios.post("http://localhost:8080/registerp", {
         patient_name: patient_name,
@@ -59,6 +86,7 @@ function Register() {
     } catch (err) {
       alert("User Registation Failed");
     }
+  }
   }
   return (
     <div className="staffreg">
@@ -138,7 +166,8 @@ function Register() {
                       <b>Contact :</b>
                     </label>
                     <input
-                      type="text"
+                      type="tel"
+                       
                       name="patient_contact1"
                       placeholder="Contact"
                       autoComplete="off"
